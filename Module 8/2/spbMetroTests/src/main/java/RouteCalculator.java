@@ -54,10 +54,10 @@ public class RouteCalculator
 
     private List<Station> getRouteOnTheLine(Station from, Station to)
     {
-        if(!from.getLine().equals(to.getLine())) {
+        if(!from.getLine().equals(to.getLine())) {                     //ВНИМАНИЕ! Нужен ли маршрут между одной и той же станцией?
             return null;
         }
-        ArrayList<Station> route = new ArrayList<>();
+        ArrayList<Station> route = new ArrayList<>(); //создается новый маршрут
         List<Station> stations = from.getLine().getStations();
         int direction = 0;
         for(Station station : stations)
@@ -71,14 +71,16 @@ public class RouteCalculator
                 }
             }
 
-            if(direction != 0) {
+            if(direction != 0) {                                      //это условие
                 route.add(station);
-            }
+            }  //Возможно стоит поменять местами два этих условия, т.к. если станция начальная равна станции конечной, то нет
+               //смысла её добавлять в маршрут
 
-            if((direction == 1 && station.equals(to)) ||
-                (direction == -1 && station.equals(from))) {
+            if((direction == 1 && station.getName().equals(to.getName())) ||
+                    (direction == -1 && station.equals(from))) {         //и это условие
                 break;
             }
+
         }
         if(direction == -1) {
             Collections.reverse(route);
@@ -86,7 +88,7 @@ public class RouteCalculator
         return route;
     }
 
-    private List<Station> getRouteWithOneConnection(Station from, Station to)
+    public List<Station> getRouteWithOneConnection(Station from, Station to)
     {
         if(from.getLine().equals(to.getLine())) {
             return null;
@@ -122,7 +124,7 @@ public class RouteCalculator
         return connected.contains(station2);
     }
 
-    private List<Station> getRouteViaConnectedLine(Station from, Station to)
+    public List<Station> getRouteViaConnectedLine(Station from, Station to)
     {
         Set<Station> fromConnected = stationIndex.getConnectedStations(from);
         Set<Station> toConnected = stationIndex.getConnectedStations(to);
@@ -130,7 +132,12 @@ public class RouteCalculator
         {
             for(Station dstStation : toConnected)
             {
-                if(srcStation.getLine().equals(dstStation.getLine())) {
+                if(srcStation.getLine().equals(dstStation.getLine()))
+                { //возможно стоит прописать условие для одной и той же станции Озерки.
+                    /*
+                    if (srcStation.getName().equals(dstStation.getName())) {
+                        return null;
+                    }*/
                     return getRouteOnTheLine(srcStation, dstStation);
                 }
             }
@@ -138,13 +145,13 @@ public class RouteCalculator
         return null;
     }
 
-    private List<Station> getRouteWithTwoConnections(Station from, Station to)
+    public List<Station> getRouteWithTwoConnections(Station from, Station to)
     {
         if (from.getLine().equals(to.getLine())) {
             return null;
         }
 
-        ArrayList<Station> route = new ArrayList<>();
+        ArrayList<Station> route = new ArrayList<>(); //создается новый маршрут
 
         List<Station> fromLineStations = from.getLine().getStations();
         List<Station> toLineStations = to.getLine().getStations();
