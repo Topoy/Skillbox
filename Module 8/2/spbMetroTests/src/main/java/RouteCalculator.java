@@ -88,7 +88,7 @@ public class RouteCalculator
         return route;
     }
 
-    public List<Station> getRouteWithOneConnection(Station from, Station to)
+    private List<Station> getRouteWithOneConnection(Station from, Station to)
     {
         if(from.getLine().equals(to.getLine())) {
             return null;
@@ -115,6 +115,10 @@ public class RouteCalculator
                 }
             }
         }
+        if (route.size() == 0)
+        {
+            return null;
+        }
         return route;
     }
 
@@ -133,11 +137,7 @@ public class RouteCalculator
             for(Station dstStation : toConnected)
             {
                 if(srcStation.getLine().equals(dstStation.getLine()))
-                { //возможно стоит прописать условие для одной и той же станции Озерки.
-                    /*
-                    if (srcStation.getName().equals(dstStation.getName())) {
-                        return null;
-                    }*/
+                {
                     return getRouteOnTheLine(srcStation, dstStation);
                 }
             }

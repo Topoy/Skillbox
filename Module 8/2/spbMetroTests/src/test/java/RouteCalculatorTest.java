@@ -1,3 +1,21 @@
+/**
+ * "//" - переход между станциями или линиями
+ * "|,-" - путь вдоль одной линии
+ * (FIRST LINE) - название линии
+ *                                                 (FIRST LINE)  /////////////  (SECOND LINE)        (FIFTH LINE)
+ *                                                  black river  /////////////   mayakovskaya          rayskaya
+ *                                                      |                             \                    |
+ *                                                      |                              \                   |
+ *                                                      |                               \                  |
+ *                                                      |           (THIRD LINE)         \                 |
+ * (FORTH LINE) pushkinskaya --- centralnaya // petrogradskaya // ozerki --- liteyniy // begovaya // perekrestnaya
+ *                                                      |                                  /
+ *                                                      |                                 /
+ *                                                      |                                /
+ *                                                 gorkovskaya                 vasileostrovskaya
+ */
+
+
 import core.Line;
 import core.Station;
 import junit.framework.TestCase;
@@ -8,7 +26,6 @@ import java.util.List;
 
 public class RouteCalculatorTest extends TestCase
 {
-    List<Station> route;
     private StationIndex stationIndex;
     private List<Station> connectedStations;
     private ArrayList<String> stationNames = new ArrayList<>();
@@ -18,6 +35,7 @@ public class RouteCalculatorTest extends TestCase
     private Line line2;
     private Line line3;
     private Line line4;
+    private Line line5;
 
     private Station blackRiver;
     private Station petrGrad;
@@ -29,13 +47,15 @@ public class RouteCalculatorTest extends TestCase
     private Station liteyniy;
     private Station centralnaya;
     private Station pushkinskaya;
+    private Station perekrestnaya;
+    private Station rayskaya;
 
     @Override
     protected void setUp() throws Exception
     {
         stationIndex = new StationIndex();
         calculator  = new RouteCalculator(stationIndex);
-        route = new ArrayList<>();
+        List<Station> route = new ArrayList<>();
         connectedStations = new ArrayList<>();
         stationNames.addAll(Arrays.asList("Чёрная речка", "Петроградская", "Горьковская", "Маяковская", "Беговая",
                                           "Василеостровская", "Озерки", "Литейный"));
@@ -44,6 +64,7 @@ public class RouteCalculatorTest extends TestCase
         line2 = new Line(2, "Вторая");
         line3 = new Line(3, "Третья");
         line4 = new Line(4, "Четвёртая");
+        line5 = new Line(5, "Пятая");
 
         blackRiver = new Station("Чёрная речка", line1);
         petrGrad = new Station("Петроградская", line1);
@@ -55,6 +76,9 @@ public class RouteCalculatorTest extends TestCase
         liteyniy = new Station("Литейный", line3);
         centralnaya = new Station("Центральная", line4);
         pushkinskaya = new Station("Пушкинская", line4);
+        perekrestnaya = new Station("Перекрёстная", line5);
+        rayskaya = new Station("Райская", line5);
+
 
 
         route.add(blackRiver);
@@ -66,6 +90,8 @@ public class RouteCalculatorTest extends TestCase
         stationIndex.addLine(line1);
         stationIndex.addLine(line2);
         stationIndex.addLine(line3);
+        stationIndex.addLine(line4);
+        stationIndex.addLine(line5);
 
         //////////////////////////Добавление станций тестового метро к stationIndex/////////////////////////////////////
         stationIndex.addStation(blackRiver);
@@ -78,6 +104,8 @@ public class RouteCalculatorTest extends TestCase
         stationIndex.addStation(liteyniy);
         stationIndex.addStation(centralnaya);
         stationIndex.addStation(pushkinskaya);
+        stationIndex.addStation(perekrestnaya);
+        stationIndex.addStation(rayskaya);
 
         /////////////////////////Добавление привязки станций тестового метро к линиям метро/////////////////////////////
         line1.addStation(blackRiver);
@@ -90,201 +118,64 @@ public class RouteCalculatorTest extends TestCase
         line3.addStation(liteyniy);
         line4.addStation(centralnaya);
         line4.addStation(pushkinskaya);
+        line5.addStation(perekrestnaya);
+        line5.addStation(rayskaya);
 
         //////////////////////////////////Добавление соединений станций тестового метро/////////////////////////////////
 
         stationIndex.addConnection(Arrays.asList(blackRiver, mayakovskaya));
         stationIndex.addConnection(Arrays.asList(petrGrad, centralnaya, ozerki));
-
-        stationIndex.addConnection(Arrays.asList(begovaya, liteyniy));
-        //stationIndex.addConnection(Arrays.asList(petrGrad, centralnaya));
-        //stationIndex.addConnection(Arrays.asList(ozerki, centralnaya));
-
+        stationIndex.addConnection(Arrays.asList(begovaya, liteyniy, perekrestnaya));
 
         //List<Station> actualShortestRoute = calculator.getShortestRoute(petrGrad, vasileostrovskaya);
         //System.out.println(actualShortestRoute);
         //System.out.println(blackRiver.getLine().getStations());
     }
 
-    public void testCalculateDuration()
+    public void test_calculate_duration()
     {
-        double actual = RouteCalculator.calculateDuration(route);
+        List<Station> path = calculator.getShortestRoute(blackRiver, liteyniy);
+        double actual = RouteCalculator.calculateDuration(path);
         double expected = 8.5;
         assertEquals(expected, actual);
     }
 
-    public void testGetShortestRoute()
+    public void test_calculate_duration_on_same_station()
+    {
+        List<Station> path = calculator.getShortestRoute(blackRiver, blackRiver);
+        double actual = RouteCalculator.calculateDuration(path);
+        double expected = 0.0;
+        assertEquals(expected, actual);
+    }
+
+    public void test_shortest_route()
     {
         List<Station> actualShortestRoute = calculator.getShortestRoute(blackRiver, vasileostrovskaya);
         List<Station> expectedShortestRoute = Arrays.asList(blackRiver, mayakovskaya, begovaya, vasileostrovskaya);
         assertEquals(expectedShortestRoute, actualShortestRoute);
     }
 
-    public void testGetRouteWithOneConnection()
+    public void test_route_with_one_connection()
     {
-        List<Station> actualRouteWithOneConnection = calculator.getRouteWithOneConnection(blackRiver, begovaya);
+        List<Station> actualRouteWithOneConnection = calculator.getShortestRoute(blackRiver, begovaya);
         List<Station> expectedRouteWithOneConnection = Arrays.asList(blackRiver, mayakovskaya, begovaya);
         assertEquals(expectedRouteWithOneConnection, actualRouteWithOneConnection);
     }
-    public void testGetRouteViaConnectedLine()
+
+    public void test_route_via_connected_line()
     {
+        //List<Station> actualRouteViaConnectedLine = calculator.getShortestRoute(blackRiver, pushkinskaya);
         List<Station> actualRouteViaConnectedLine = calculator.getRouteViaConnectedLine(blackRiver, liteyniy);
-        List<Station> expectedRouteViaConnectedLine = Arrays.asList(mayakovskaya, begovaya);
-        assertEquals(expectedRouteViaConnectedLine, actualRouteViaConnectedLine);
+        //List<Station> expectedRouteViaConnectedLine = Arrays.asList(mayakovskaya, begovaya);
+        //assertEquals(expectedRouteViaConnectedLine, actualRouteViaConnectedLine);
         System.out.println(actualRouteViaConnectedLine);
     }
 
-    public void testGetRouteWithTwoConnections()
+    public void test_route_with_two_connections()
     {
-        List<Station> actualRouteWithTwoConnections = calculator.getRouteWithTwoConnections(gorkovskaya, pushkinskaya);
+        List<Station> actualRouteWithTwoConnections = calculator.getShortestRoute(gorkovskaya, rayskaya);
         System.out.println(actualRouteWithTwoConnections);
-        //List<Station> expectedRouteWithTwoConnections = Arrays.asList(blackRiver, petrGrad, centralnaya, pushkinskaya);
-        //assertEquals(expectedRouteWithTwoConnections, actualRouteWithTwoConnections);
+        List<Station> expectedRouteWithTwoConnections = Arrays.asList(gorkovskaya, petrGrad, ozerki, liteyniy, perekrestnaya, rayskaya);
+        assertEquals(expectedRouteWithTwoConnections, actualRouteWithTwoConnections);
     }
-
-
-
-    @Override
-    protected void tearDown() throws Exception
-    {
-
-    }
-
-    public static void printRoute(List<Station> route)
-    {
-        Station previousStation = null;
-        for(Station station : route)
-        {
-            if(previousStation != null)
-            {
-                Line prevLine = previousStation.getLine();
-                Line nextLine = station.getLine();
-                if(!prevLine.equals(nextLine))
-                {
-                    System.out.println("\tПереход на станцию " +
-                            station.getName() + " (" + nextLine.getName() + " линия)");
-                }
-            }
-            System.out.println("\t" + station.getName());
-            previousStation = station;
-        }
-    }
-/*
-    private static RouteCalculator getRouteCalculator()
-{
-    createStationIndex();
-    return new RouteCalculator(stationIndex);
-}
-
-    private static String getJsonFile()
-    {
-        StringBuilder builder = new StringBuilder();
-        try
-        {
-            List<String> lines = Files.readAllLines(Paths.get(dataFile));
-            lines.forEach(line -> builder.append(line));
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return builder.toString();
-    }
-
-    private static void createStationIndex()
-    {
-        stationIndex = new StationIndex();
-        try
-        {
-            JSONParser parser = new JSONParser();
-            JSONObject jsonData = (JSONObject) parser.parse(getJsonFile());
-
-            JSONArray linesArray = (JSONArray) jsonData.get("lines");
-            parseLines(linesArray);
-
-            JSONObject stationsObject = (JSONObject) jsonData.get("stations");
-            parseStations(stationsObject);
-
-            JSONArray connectionsArray = (JSONArray) jsonData.get("connections");
-            parseConnections(connectionsArray);
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private static void parseLines(JSONArray linesArray)
-    {
-        linesArray.forEach(lineObject -> {
-            JSONObject lineJsonObject = (JSONObject) lineObject;
-            Line line = new Line(
-                    ((Long) lineJsonObject.get("number")).intValue(),
-                    (String) lineJsonObject.get("name")
-            );
-            stationIndex.addLine(line);
-        });
-    }
-
-    private static void parseStations(JSONObject stationsObject)
-    {
-        stationsObject.keySet().forEach(lineNumberObject ->
-        {
-            int lineNumber = Integer.parseInt((String) lineNumberObject);
-            Line line = stationIndex.getLine(lineNumber);
-            JSONArray stationsArray = (JSONArray) stationsObject.get(lineNumberObject);
-            stationsArray.forEach(stationObject ->
-            {
-                Station station = new Station((String) stationObject, line);
-                stationIndex.addStation(station);
-                line.addStation(station);
-            });
-        });
-    }
-
-    private static void parseConnections(JSONArray connectionsArray)
-    {
-        connectionsArray.forEach(connectionObject ->
-        {
-            JSONArray connection = (JSONArray) connectionObject;
-            List<Station> connectionStations = new ArrayList<>();
-            connection.forEach(item ->
-            {
-                JSONObject itemObject = (JSONObject) item;
-                int lineNumber = ((Long) itemObject.get("line")).intValue();
-                String stationName = (String) itemObject.get("station");
-
-                Station station = stationIndex.getStation(stationName, lineNumber);
-                if(station == null)
-                {
-                    throw new IllegalArgumentException("core.Station " +
-                            stationName + " on line " + lineNumber + " not found");
-                }
-                connectionStations.add(station);
-            });
-            stationIndex.addConnection(connectionStations);
-        });
-    }
-
-    private static void printRoute(List<Station> route)
-    {
-        Station previousStation = null;
-        for(Station station : route)
-        {
-            if(previousStation != null)
-            {
-                Line prevLine = previousStation.getLine();
-                Line nextLine = station.getLine();
-                if(!prevLine.equals(nextLine))
-                {
-                    System.out.println("\tПереход на станцию " +
-                            station.getName() + " (" + nextLine.getName() + " линия)");
-                }
-            }
-            System.out.println("\t" + station.getName());
-            previousStation = station;
-        }
-    }
-    */
 }
