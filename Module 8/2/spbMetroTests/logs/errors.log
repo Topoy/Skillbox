@@ -6,3 +6,8 @@
 2019-10-16 09:31:13.732 [main] ERROR  - Ошибка
 2019-10-16 09:34:24.471 [main] ERROR  - Ошибка
 2019-10-16 09:44:41.663 [main] ERROR  - Вы ничего не ввели
+2019-10-17 18:40:41.926 [main] ERROR Main - Вы ничего не ввели
+2019-10-17 18:44:12.979 [main] ERROR Main - Ошибка ввода
+java.lang.Exception: Вы ничего не ввели
+	at Main.takeStation(Main.java:85) ~[classes/:?]
+	at Main.main(Main.java:34) [classes/:?]

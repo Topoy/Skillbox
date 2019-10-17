@@ -14,9 +14,7 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static Logger logger;
-    private static Logger errorLogger;
-    private static Logger warnLogger;
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     private static String dataFile = "src/main/resources/map.json";
     private static Scanner scanner;
@@ -26,14 +24,13 @@ public class Main
     public static void main(String[] args)
     {
         RouteCalculator calculator = getRouteCalculator();
-        logger = LogManager.getRootLogger();
-        errorLogger = LogManager.getLogger("");
 
         System.out.println("Программа расчёта маршрутов метрополитена Санкт-Петербурга\n");
         scanner = new Scanner(System.in);
         for(;;)
         {
-            try {
+            try
+            {
                 Station from = takeStation("Введите станцию отправления:");
                 Station to = takeStation("Введите станцию назначения:");
 
@@ -46,7 +43,7 @@ public class Main
             }
             catch (Exception e)
             {
-                logger.error(e.getMessage());
+                LOGGER.error("Ошибка ввода", e);
             }
         }
     }
@@ -88,11 +85,12 @@ public class Main
                 throw new Exception("Вы ничего не ввели");
             }
             Station station = stationIndex.getStation(line);
-            if(station != null) {
-                logger.info("Пользователь искал станцию: " + line);
+            if(station != null)
+            {
+                LOGGER.info("Пользователь искал станцию: {}", line);
                 return station;
             }
-            logger.warn("Станция не найдена: " + line);
+            LOGGER.warn("Станция не найдена: {}", line);
             System.out.println("Станция не найдена :(");
         }
     }
@@ -114,7 +112,8 @@ public class Main
             JSONArray connectionsArray = (JSONArray) jsonData.get("connections");
             parseConnections(connectionsArray);
         }
-        catch(Exception ex) {
+        catch(Exception ex)
+        {
             ex.printStackTrace();
         }
     }
@@ -174,11 +173,13 @@ public class Main
     private static String getJsonFile()
     {
         StringBuilder builder = new StringBuilder();
-        try {
+        try
+        {
             List<String> lines = Files.readAllLines(Paths.get(dataFile));
             lines.forEach(line -> builder.append(line));
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return builder.toString();
