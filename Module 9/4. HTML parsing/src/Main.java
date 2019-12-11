@@ -2,47 +2,44 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class Main
 {
-    //private static File file = new File("images");
-
+    private static int fileName;
     public static void main(String[] args) throws IOException
     {
-        ArrayList<String> links = new ArrayList<>(); //список ссылок на картинки
-
-        Document doc = Jsoup.connect("https://lenta.ru/").get();
-
-        Elements elements = doc.select("img");
-
-        elements.forEach(element -> System.out.println(element.attr("src")));
-
-        elements.forEach(element -> links.add(element.attr("src")));
-
-        links.forEach(System.out::println);
-
-        for (String link : links) {
-            loadImage(link);
-        }
-
+        Document document = Jsoup.connect("https://lenta.ru/").maxBodySize(0).get();
+        Elements elements = document.select("img");
+        elements.stream().map(element -> element.attr("src")).forEach(Main::loadImage);
     }
 
-    public static void loadImage(String link)
+    private static void loadImage(String link)
     {
+        if (!link.contains("http"))
+        {
+            link = "https:" + link;
+        }
         try
         {
-            BufferedImage image = ImageIO.read(new URL(link));
-            ImageIO.write(image, "jpg", new File("images/" + link.substring(link.length()-10)));
+            fileName++;
+            InputStream in = new URL(link).openStream();
+            File file = new File("images");
+            if (!file.exists())
+            {
+                file.mkdir();
+            }
+            Files.copy(in, Paths.get("images/" + fileName + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
         }
-        catch(Exception e)
+        catch(Exception ex)
         {
-            e.printStackTrace();
+            ex.printStackTrace();
         }
     }
 }
