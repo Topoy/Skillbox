@@ -17,7 +17,10 @@ public class Main
     {
         Document document = Jsoup.connect("https://lenta.ru/").maxBodySize(0).get();
         Elements elements = document.select("img");
-        elements.stream().map(element -> element.attr("src")).forEach(Main::loadImage);
+
+        elements.stream()
+                .map(element -> element.attr("src"))
+                .forEach(Main::loadImage);
     }
 
     private static void loadImage(String link)
@@ -35,11 +38,20 @@ public class Main
             {
                 file.mkdir();
             }
-            Files.copy(in, Paths.get("images/" + fileName + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
+            if (link.contains("jpg"))
+            {
+                Files.copy(in, Paths.get("images/" + fileName + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
+            }
+            else if (link.contains("png"))
+            {
+                Files.copy(in, Paths.get("images/" + fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);
+            }
+            else Files.copy(in, Paths.get("images/" + fileName + ".gif"), StandardCopyOption.REPLACE_EXISTING);
+            in.close();
         }
-        catch(Exception ex)
+        catch(IOException ex)
         {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 }
