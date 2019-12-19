@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -29,10 +30,9 @@ public class Main
         {
             link = "https:" + link;
         }
-        try
+        try (InputStream in = new URL(link).openStream();)
         {
             fileName++;
-            InputStream in = new URL(link).openStream();
             File file = new File("images");
             if (!file.exists())
             {
@@ -40,18 +40,27 @@ public class Main
             }
             if (link.contains("jpg"))
             {
-                Files.copy(in, Paths.get("images/" + fileName + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
+                copyInImagesFolder(in, fileName, ".jpg");
             }
             else if (link.contains("png"))
             {
-                Files.copy(in, Paths.get("images/" + fileName + ".png"), StandardCopyOption.REPLACE_EXISTING);
+                copyInImagesFolder(in, fileName, ".png");
             }
-            else Files.copy(in, Paths.get("images/" + fileName + ".gif"), StandardCopyOption.REPLACE_EXISTING);
-            in.close();
+            else {
+                URLConnection connection = new URL(link).openConnection();
+                String[] mimeTypeParts = connection.getContentType().split("/");
+                String format = "." + mimeTypeParts[1];
+                copyInImagesFolder(in, fileName, format);
+            }
         }
         catch(IOException ex)
         {
             throw new RuntimeException(ex);
         }
+    }
+
+    private static void copyInImagesFolder(InputStream in, int fileName, String fileFormat) throws IOException
+    {
+        Files.copy(in, Paths.get("images/" + fileName + fileFormat), StandardCopyOption.REPLACE_EXISTING);
     }
 }
