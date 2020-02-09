@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -6,12 +7,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main
@@ -28,7 +30,7 @@ public class Main
         Document document = Jsoup.connect(link).maxBodySize(0).get();
         Element table = document.select("table:has(span a[title='Бульвар Рокоссовского (станция метро)'])").first();
         Elements rows = table.select("tr:nth-of-type(1n+2)"); //пропуск первого tr с названиями колонок таблицы
-        rows.stream().forEach(row -> {
+        rows.forEach(row -> {
             String stationName = row.select("td:nth-child(2)").first().text();
             String lineName = row.select("td:nth-child(1) span").attr("title");
             String lineNumber = row.select("td:first-child span:nth-child(1)").text();
@@ -61,7 +63,6 @@ public class Main
         for (Map.Entry<String, List<Station>> item : stationsByLine.entrySet())
         {
             stationsArray = new JSONArray();
-            System.out.println(item.getKey());
             for (Station station : item.getValue())
             {
                 stationsArray.add(station.getName());
@@ -95,13 +96,12 @@ public class Main
         moscowMetroStations.put("lines", jsonLines);
         moscowMetroStations.put("connections", jsonConnections);
 
-        Gson gson = new Gson();
-        String json = gson.toJson(moscowMetroStations, LinkedHashMap.class);
-        System.out.println(json);
+        String advancedJson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+                                               .toJson(moscowMetroStations, LinkedHashMap.class);
 
         try (FileWriter file = new FileWriter("map.json"))
         {
-            file.write(json);
+            file.write(advancedJson);
             file.flush();
         }
         catch (IOException e)
@@ -138,8 +138,7 @@ public class Main
     private static void connectionParser(Element row, String stationName, String lineName) throws IOException
     {
         List<String> connectionsLine = row.select("td:nth-child(4) span").eachText();
-        List<String> connectionNames = convertConnectionName(row);
-        System.out.println(connectionNames + " " + connectionsLine);
+        List<String> connectionNames = advancedConvertConnectionName(row);
         if (connectionNames.size() != 0)
         {
             List<Station> temp = new ArrayList<>();
@@ -150,50 +149,6 @@ public class Main
             }
             connectionList.add(temp);
         }
-    }
-
-    private static List<String> convertConnectionName(Element rows)
-    {
-        List<String> fullConnectionsNames = rows.select("td:nth-child(4) a").eachAttr("title");
-        List<String> pureConnectionsNames = new ArrayList<>();
-        for (String connectionName: fullConnectionsNames)
-        {
-            if (connectionName.contains("Переход на станцию"))
-            {
-                connectionName = connectionName.replaceAll(connectionName.substring(0, 19), "");
-            }
-            if (connectionName.contains("Кросс-платформенная"))
-            {
-                connectionName = connectionName.replaceAll(connectionName.substring(0, 41), "");
-            }
-            if (connectionName.contains("линии"))
-            {
-                connectionName = connectionName.replaceAll(connectionName.substring(connectionName.length()-6), "");
-            }
-            if (connectionName.contains("кольца"))
-            {
-                connectionName = connectionName.replaceAll(connectionName.substring(connectionName.length()-32), "");
-            }
-            if (connectionName.contains("монорельса"))
-            {
-                connectionName = connectionName.replaceAll(connectionName.substring(connectionName.length() - 23), "");
-            }
-            if (connectionName.contains("ой"))
-            {
-                List<String> connectionParts = Arrays.asList(connectionName.split(" "));
-                StringBuilder tmp = new StringBuilder();
-                for (int i = 0; i < connectionParts.size(); i++)
-                {
-                    if ((i == 0) || !connectionParts.get(i).contains("ой"))
-                    {
-                        tmp.append(connectionParts.get(i)).append(" ");
-                    }
-                }
-                connectionName = tmp.toString().trim();
-            }
-            pureConnectionsNames.add(connectionName);
-        }
-        return pureConnectionsNames;
     }
 
     private static String getJsonFile()
@@ -230,9 +185,19 @@ public class Main
         }
     }
 
-
-
+    private static List<String> advancedConvertConnectionName(Element rows)
+    {
+        final String regex = "(Переход на станцию|Кросс-платформенная пересадка на станцию)\\s+(?<station>.+)\\s+(\\p{IsCyrillic}+\\s+линии)";
+        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+        List<String> fullConnectionsNames = rows.select("td:nth-child(4) a").eachAttr("title");
+        List<String> pureConnectionsNames = new ArrayList<>();
+        for (String string : fullConnectionsNames)
+        {
+            final Matcher matcher = pattern.matcher(string);
+            while (matcher.find()) {
+                pureConnectionsNames.add(matcher.group(2));
+            }
+        }
+        return pureConnectionsNames;
+    }
 }
-//parseConnection: Дальше пропиши в параметры название станции и линии который будут подходить с одной стороны соеднения.
-//С другой стороны соединения: названия станции и линии, которые ты определяешь внутри метода. Дальще их состыкуешь уже
-//внутри json объектов.
