@@ -16,6 +16,8 @@ public class Main
         Session session = sessionFactory.openSession();
         Teachers teachers = session.get(Teachers.class, 1);
         System.out.println(teachers.getName());
+        Subscription subscription = session.get(Subscription.class, 1);
+        System.out.println(subscription.getSubscriptionDate());
         sessionFactory.close();
     }
 }

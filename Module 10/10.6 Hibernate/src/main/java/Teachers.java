@@ -1,10 +1,19 @@
 import javax.persistence.*;
-;
 
 @Entity
 @Table(name = "Teachers")
 public class Teachers
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+
+    private int salary;
+
+    private int age;
+
     public int getId() {
         return id;
     }
@@ -36,14 +45,4 @@ public class Teachers
     public void setAge(int age) {
         this.age = age;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private String name;
-
-    private int salary;
-
-    private int age;
 }
