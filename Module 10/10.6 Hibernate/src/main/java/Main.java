@@ -23,6 +23,20 @@ public class Main
             System.out.println(course.getName());
             Subscription subscription = session.get(Subscription.class, new SubscriptionPK(1, 2));
             System.out.println(subscription.getSubscriptionDate());
+
+//////////////////////////////////////////////Create LinkedPurchaseList ////////////////////////////////////////////////
+            String query = "INSERT INTO " + LinkedPurchaseList.class.getSimpleName() + "(student_id, course_id, student_name, " +
+                    "course_name, subscription_date, price) " +
+                    "SELECT students.id as student_id, courses.id as course_id, student_name, course_name, subscription_date, " +
+                    "purchaselist.price FROM purchaselist " +
+                    "JOIN courses on courses.name = course_name " +
+                    "JOIN students on students.name = student_name";
+            session.beginTransaction();
+            int rows = session.createSQLQuery(query).executeUpdate();
+            System.out.println(rows);
+            LinkedPurchaseList purchaseList = session.get(LinkedPurchaseList.class, new LinkedPurchaseListPK(1,10));
+            System.out.println(purchaseList.getCourseName() + " - " + purchaseList.getStudentName());
+
         }
         catch (Exception e)
         {
