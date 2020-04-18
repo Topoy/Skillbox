@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Bank
 {
-    private HashMap<Integer, Account> accounts = createAccounts();
+    private HashMap<Integer, Account> accounts;
     private final Random random = new Random();
 
     public synchronized boolean isFraud(int fromAccountNum, int toAccountNum, long amount)
@@ -26,6 +26,7 @@ public class Bank
         Account to = accounts.get(toAccountNum);
         if (from.getIsBlocked() || to.getIsBlocked())
         {
+            System.out.println("Операция заблокирована");
             return;
         }
         if (amount > 50000)
@@ -34,6 +35,7 @@ public class Bank
             {
                 from.setIsBlocked(true);
                 to.setIsBlocked(true);
+                System.out.println("Операция заблокирована");
                 return;
             }
         }
@@ -64,5 +66,10 @@ public class Bank
             accountMap.put(i, account);
         }
         return accountMap;
+    }
+
+    public void setAccounts(HashMap<Integer, Account> accounts)
+    {
+        this.accounts = accounts;
     }
 }

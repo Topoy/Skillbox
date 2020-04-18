@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main
 {
@@ -8,7 +9,7 @@ public class Main
         ArrayList<Account> accounts = new ArrayList<>();
         ArrayList<Account> accounts1 = new ArrayList<>();
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 2; i++)
         {
             accounts.add(sberbank.getAccounts().get(i));
         }
@@ -16,12 +17,12 @@ public class Main
 
         accounts.forEach(a -> System.out.println("Номер счета: " + a.getAccNumber() + "; Баланс " + a.getMoney()));
 
-        for (int i = 0; i < 99; i++)
+        for (int i = 0; i < 1; i++)
         {
             sberbank.transfer(i, i + 1, 5000);
         }
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 2; i++)
         {
             accounts1.add(sberbank.getAccounts().get(i));
         }
