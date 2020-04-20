@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d71cd778-2a81-4f76-b368-5740cedb784f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/tasks/Task03TruckTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/tasks/Task03TruckTypes.java" afterDir="false" />
@@ -16,13 +12,10 @@
       <change beforePath="$PROJECT_DIR$/../../Module 10/10.6 Hibernate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/10.6 Hibernate/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Transactions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Transactions.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 8/2/spbMetroTests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 8/2/spbMetroTests/.idea/workspace.xml" afterDir="false" />
@@ -54,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="139">
+              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/Bank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-629">
-              <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+            <state relative-caret-position="102">
+              <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2315#2316#0" expanded="true" />
@@ -77,30 +70,39 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-368">
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="833">
+              <caret line="49" column="5" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
               <folding>
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#634#635#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
+                <element signature="e#713#714#0" expanded="true" />
+                <element signature="e#785#786#0" expanded="true" />
+                <element signature="e#858#859#0" expanded="true" />
+                <element signature="e#947#948#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="88" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="357">
+              <caret line="78" column="33" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#186#204#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/JUnit38ClassRunner.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -135,8 +137,9 @@
         <option value="$PROJECT_DIR$/src/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" />
+        <option value="$PROJECT_DIR$/src/java/Account.java" />
         <option value="$PROJECT_DIR$/src/java/Bank.java" />
+        <option value="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" />
       </list>
     </option>
   </component>
@@ -182,6 +185,45 @@
               <item name="Test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="junit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="junit" type="462c0819:PsiDirectoryNode" />
+              <item name="internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Transactions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="junit" type="462c0819:PsiDirectoryNode" />
+              <item name="internal" type="462c0819:PsiDirectoryNode" />
+              <item name="runners" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -196,7 +238,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587216301778" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587371705118" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../OtherUserProjects/SkillboxJava-master/module11/11.13" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
@@ -221,7 +263,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TransactionsTest.testManyThreadTransaction">
+  <component name="RunManager" selected="JUnit.TransactionsTest">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -342,10 +384,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TransactionsTest" />
         <item itemvalue="JUnit.TransactionsTest.testManyThreadTransaction" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.TransactionsTest.testOneTransaction" />
-        <item itemvalue="JUnit.TransactionsTest" />
       </list>
     </recent_temporary>
   </component>
@@ -363,39 +405,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TransactionsTest_testOneTransaction - 2020.04.18 at 10h 49m 28s.xml">
-      <configuration name="TransactionsTest.testOneTransaction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionsTest_testOneTransaction - 2020.04.18 at 10h 50m 43s.xml">
-      <configuration name="TransactionsTest.testOneTransaction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 18m 47s.xml">
+    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.20 at 11h 19m 52s.xml">
       <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 20m 56s.xml">
+    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.20 at 11h 22m 14s.xml">
       <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 21m 34s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 26m 02s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 21m 50s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 26m 04s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 22m 54s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 26m 46s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 24m 14s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 28m 12s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 24m 25s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 28m 49s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TransactionsTest_testManyThreadTransaction - 2020.04.18 at 16h 24m 34s.xml">
-      <configuration name="TransactionsTest.testManyThreadTransaction" configurationId="JUnit" />
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 30m 45s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 33m 13s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest - 2020.04.20 at 11h 34m 27s.xml">
+      <configuration name="TransactionsTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2579425" />
@@ -477,9 +519,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java</url>
-          <line>99</line>
+          <line>25</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/java/Bank.java</url>
@@ -507,23 +555,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/Account.java">
+    <entry file="file://$PROJECT_DIR$/src/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-368">
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="139">
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/JUnit38ClassRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/Bank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-629">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+        <state relative-caret-position="102">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2315#2316#0" expanded="true" />
@@ -532,23 +584,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="357">
+          <caret line="78" column="33" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#186#204#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java">
+    <entry file="file://$PROJECT_DIR$/src/java/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        <state relative-caret-position="833">
+          <caret line="49" column="5" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#186#204#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#858#859#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
           </folding>
         </state>
       </provider>

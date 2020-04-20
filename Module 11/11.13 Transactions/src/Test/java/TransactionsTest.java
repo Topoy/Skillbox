@@ -2,6 +2,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -10,19 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 public class TransactionsTest extends TestCase
 {
-    public HashMap<Integer, Account> accounts = new HashMap<Integer, Account>();
-    public Bank bank;
-    public Account firstAccount;
-    public Account secondAccount;
-    public Account account3;
-    public Account account4;
-    public Account account5;
-    public Account account6;
-    public Account account7;
-    public Account account8;
-    public Account account9;
-    public Account account10;
-
+    private HashMap<Integer, Account> accounts = new HashMap<Integer, Account>();
+    private ArrayList<Account> accountList;
+    private Bank bank;
     private Random random;
     private Random randomSum;
 
@@ -30,27 +21,12 @@ public class TransactionsTest extends TestCase
     public void setUp()
     {
         bank = new Bank();
-        firstAccount = new Account(1000, 1);
-        secondAccount = new Account(1000, 2);
-        account3 = new Account(1000, 3);
-        account4 = new Account(1000, 4);
-        account5 = new Account(1000, 5);
-        account6 = new Account(1000, 6);
-        account7 = new Account(1000, 7);
-        account8 = new Account(1000, 8);
-        account9 = new Account(1000, 9);
-        account10 = new Account(1000, 10);
+        accountList = bank.createAccountList(10, 1000);
 
-        accounts.put(1, firstAccount);
-        accounts.put(2, secondAccount);
-        accounts.put(3, account3);
-        accounts.put(4, account4);
-        accounts.put(5, account5);
-        accounts.put(6, account6);
-        accounts.put(7, account7);
-        accounts.put(8, account8);
-        accounts.put(9, account9);
-        accounts.put(10, account10);
+        for (int i = 0; i < accountList.size(); i++)
+        {
+            accounts.put(i+1, accountList.get(i));
+        }
 
         bank.setAccounts(accounts);
         random = new Random(1);
@@ -61,6 +37,8 @@ public class TransactionsTest extends TestCase
     @Test
     public void testOneTransaction() throws InterruptedException
     {
+        Account firstAccount = accountList.get(0);
+        Account secondAccount = accountList.get(1);
         bank.transfer(1, 2, 100);
         long actualFromAccount = firstAccount.getMoney();
         long expectedFromAccount = 900;
@@ -74,22 +52,24 @@ public class TransactionsTest extends TestCase
     public void testManyThreadTransaction() throws InterruptedException
     {
         ExecutorService service = Executors.newCachedThreadPool();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 500; i++)
         {
             service.submit(new Runnable() {
                 @Override
                 public void run()
                 {
-                    for (int j = 0; j < 500; j++)
-                    {
-                        int fromRandom = random.nextInt(10);
-                        int toRandom = random.nextInt(10);
-                        int randomMoney = randomSum.nextInt(100);
-                        try {
+                    try {
+                        for (int j = 0; j < 5000; j++)
+                        {
+                            int fromRandom = random.nextInt(10);
+                            int toRandom = random.nextInt(10);
+                            int randomMoney = randomSum.nextInt(100);
                             bank.transfer(fromRandom, toRandom, randomMoney);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -97,9 +77,11 @@ public class TransactionsTest extends TestCase
         service.shutdown();
         service.awaitTermination(1, TimeUnit.HOURS);
         long expectedSum = 10000;
-        long actualSum = firstAccount.getMoney() + secondAccount.getMoney() + account3.getMoney() + account4.getMoney() +
-                account5.getMoney() + account6.getMoney() + account7.getMoney() + account8.getMoney() + account9.getMoney() +
-                account10.getMoney();
+        long actualSum = 0;
+        for (Account account : accountList)
+        {
+            actualSum += account.getMoney();
+        }
         assertEquals(expectedSum, actualSum);
         /*
         Создаем рандомное число. Далее вызываем трансфер для каждого потока в цикле 500 раз.

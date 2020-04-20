@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -56,6 +57,7 @@ public class Bank
     {
         return accounts;
     }
+
     private static HashMap<Integer, Account> createAccounts()
     {
         HashMap<Integer, Account> accountMap = new HashMap<>();
@@ -66,6 +68,16 @@ public class Bank
             accountMap.put(i, account);
         }
         return accountMap;
+    }
+
+    public ArrayList<Account> createAccountList(int amount, long cash)
+    {
+        ArrayList<Account> accountList = new ArrayList<>();
+        for (int i = 1; i <= amount; i++)
+        {
+            accountList.add(new Account(cash, i));
+        }
+        return accountList;
     }
 
     public void setAccounts(HashMap<Integer, Account> accounts)

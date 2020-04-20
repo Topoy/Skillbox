@@ -3,6 +3,7 @@ public class Account
     private long money;
     private Integer accNumber;
     private boolean isBlocked = false;
+    private boolean isPossible = true;
 
     public Account(long money, Integer accNumber)
     {
@@ -12,12 +13,16 @@ public class Account
 
     public void deposit(long money)
     {
-        this.money += money;
+        if (isPossible)
+        {
+            this.money += money;
+        }
     }
     public boolean withdraw(long money)
     {
         if (this.money < money)
         {
+            isPossible = false;
             return false;
         }
         else {
