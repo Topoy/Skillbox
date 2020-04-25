@@ -40,8 +40,36 @@ public class Bank
                 return;
             }
         }
-        from.withdraw(amount);
-        to.deposit(amount);
+        if (from.getAccNumber() < to.getAccNumber())
+        {
+            synchronized (from)
+            {
+                synchronized (to)
+                {
+                    if (from.withdraw(amount))
+                    {
+                        to.deposit(amount);
+                    }
+                }
+            }
+        }
+        else
+        {
+            synchronized (to)
+            {
+                synchronized (from)
+                {
+                    if (from.withdraw(amount))
+                    {
+                        to.deposit(amount);
+                    }
+
+                }
+            }
+        }
+
+
+
     }
 
     /**
@@ -84,4 +112,5 @@ public class Bank
     {
         this.accounts = accounts;
     }
+
 }

@@ -13,16 +13,12 @@ public class Account
 
     public void deposit(long money)
     {
-        if (isPossible)
-        {
-            this.money += money;
-        }
+        this.money += money;
     }
     public boolean withdraw(long money)
     {
         if (this.money < money)
         {
-            isPossible = false;
             return false;
         }
         else {

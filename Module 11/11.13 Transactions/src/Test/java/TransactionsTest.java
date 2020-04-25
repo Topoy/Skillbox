@@ -52,7 +52,7 @@ public class TransactionsTest extends TestCase
     public void testManyThreadTransaction() throws InterruptedException
     {
         ExecutorService service = Executors.newCachedThreadPool();
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 50000; i++)
         {
             service.submit(new Runnable() {
                 @Override
