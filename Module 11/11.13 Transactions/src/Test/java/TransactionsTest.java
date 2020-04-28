@@ -12,8 +12,11 @@ import java.util.concurrent.TimeUnit;
 public class TransactionsTest extends TestCase
 {
     private HashMap<Integer, Account> accounts = new HashMap<Integer, Account>();
+    private HashMap<Integer, Account> reachAccounts = new HashMap<>();
     private ArrayList<Account> accountList;
+    private ArrayList<Account> reachAccountList;
     private Bank bank;
+    private Bank reachBank;
     private Random random;
     private Random randomSum;
 
@@ -21,14 +24,24 @@ public class TransactionsTest extends TestCase
     public void setUp()
     {
         bank = new Bank();
+        reachBank = new Bank();
         accountList = bank.createAccountList(10, 1000);
+        reachAccountList = reachBank.createAccountList(10, 1000000);
 
+        //Создали список аккаунтов среднего класса
         for (int i = 0; i < accountList.size(); i++)
         {
             accounts.put(i+1, accountList.get(i));
         }
 
+        //Создали список аккаунтов богатого класса
+        for (int i = 0; i < reachAccountList.size(); i++)
+        {
+            reachAccounts.put(i+1, reachAccountList.get(i));
+        }
+
         bank.setAccounts(accounts);
+        reachBank.setAccounts(reachAccounts);
         random = new Random(1);
         randomSum = new Random(20);
 
@@ -95,5 +108,39 @@ public class TransactionsTest extends TestCase
 
          */
     }
+
+    @Test
+    public void testIsFraudMethod() throws InterruptedException
+    {
+        ExecutorService service = Executors.newCachedThreadPool();
+        for (int i = 0; i < 100; i++)
+        {
+            service.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                            int toRandom = random.nextInt(10);
+                            reachBank.transfer(1, toRandom, 100000);
+                            System.out.println(reachAccountList.get(0).getMoney());
+                        }
+                    }
+                    catch (InterruptedException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+        }
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.HOURS);
+        boolean expectedState = true;
+        boolean actualState = reachAccountList.get(0).getIsBlocked();
+
+        assertEquals(expectedState, actualState);
+    }
+
 
 }

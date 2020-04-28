@@ -7,7 +7,7 @@ public class Bank
     private HashMap<Integer, Account> accounts;
     private final Random random = new Random();
 
-    public synchronized boolean isFraud(int fromAccountNum, int toAccountNum, long amount)
+    private synchronized boolean isFraud(int fromAccountNum, int toAccountNum, long amount)
         throws InterruptedException
     {
         Thread.sleep(1000);
@@ -21,7 +21,7 @@ public class Bank
      * метод isFraud. Если возвращается true, то делается блокировка
      * счетов (как – на ваше усмотрение)
      */
-    public void transfer(int fromAccountNum, int toAccountNum, long amount) throws InterruptedException
+    public synchronized void transfer(int fromAccountNum, int toAccountNum, long amount) throws InterruptedException
     {
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
@@ -36,7 +36,7 @@ public class Bank
             {
                 from.setIsBlocked(true);
                 to.setIsBlocked(true);
-                System.out.println("Операция заблокирована");
+                //System.out.println("Операция заблокирована");
                 return;
             }
         }
