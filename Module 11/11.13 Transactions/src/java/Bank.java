@@ -10,8 +10,9 @@ public class Bank
     private synchronized boolean isFraud(int fromAccountNum, int toAccountNum, long amount)
         throws InterruptedException
     {
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         return random.nextBoolean();
+        //return true;
     }
 
     /**
@@ -21,7 +22,7 @@ public class Bank
      * метод isFraud. Если возвращается true, то делается блокировка
      * счетов (как – на ваше усмотрение)
      */
-    public synchronized void transfer(int fromAccountNum, int toAccountNum, long amount) throws InterruptedException
+    public void transfer(int fromAccountNum, int toAccountNum, long amount) throws InterruptedException
     {
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
@@ -37,7 +38,7 @@ public class Bank
                 from.setIsBlocked(true);
                 to.setIsBlocked(true);
                 //System.out.println("Операция заблокирована");
-                return;
+                //return;
             }
         }
         if (from.getAccNumber() < to.getAccNumber())
@@ -67,8 +68,6 @@ public class Bank
                 }
             }
         }
-
-
 
     }
 

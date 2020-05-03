@@ -138,7 +138,6 @@ public class TransactionsTest extends TestCase
         service.awaitTermination(1, TimeUnit.HOURS);
         boolean expectedState = true;
         boolean actualState = reachAccountList.get(0).getIsBlocked();
-
         assertEquals(expectedState, actualState);
     }
 
