@@ -12,9 +12,7 @@
       <change beforePath="$PROJECT_DIR$/../../Module 10/10.6 Hibernate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/10.6 Hibernate/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 10/JDBCExperiments/src/main/java/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" afterDir="false" />
@@ -56,15 +54,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/Bank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+            <state relative-caret-position="193">
+              <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2044#2045#0" expanded="true" />
-                <element signature="e#2822#2823#0" expanded="true" />
+                <element signature="e#2100#2101#0" expanded="true" />
+                <element signature="e#2878#2879#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="125" selection-start-line="125" selection-end-line="125" />
+            <state relative-caret-position="202">
+              <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,13 +110,13 @@
         <option value="$PROJECT_DIR$/src/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" />
         <option value="$PROJECT_DIR$/src/java/Account.java" />
         <option value="$PROJECT_DIR$/src/java/Bank.java" />
+        <option value="$PROJECT_DIR$/src/Test/java/TransactionsTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1" />
     <option name="width" value="1364" />
     <option name="height" value="728" />
@@ -220,7 +218,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589086079668" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589086900991" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
@@ -402,18 +400,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 31m 01s.xml">
-      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 31m 36s.xml">
-      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 32m 56s.xml">
-      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 33m 02s.xml">
-      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 36m 23s.xml">
       <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
     </history-entry>
@@ -430,6 +416,18 @@
       <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 43m 06s.xml">
+      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 44m 48s.xml">
+      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 07h 47m 16s.xml">
+      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 08h 00m 23s.xml">
+      <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TransactionsTest_testIsFraudMethod - 2020.05.10 at 08h 01m 46s.xml">
       <configuration name="TransactionsTest.testIsFraudMethod" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -506,24 +504,6 @@
       <collection />
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java</url>
-          <line>124</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java</url>
-          <line>127</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/pom.xml" />
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/JUnit38ClassRunner.class">
@@ -547,6 +527,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/Bank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2100#2101#0" expanded="true" />
+            <element signature="e#2878#2879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -556,22 +548,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Test/java/TransactionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        <state relative-caret-position="202">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/Bank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2044#2045#0" expanded="true" />
-            <element signature="e#2822#2823#0" expanded="true" />
           </folding>
         </state>
       </provider>

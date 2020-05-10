@@ -34,6 +34,7 @@ public class Bank
                 if (from.getIsBlocked() || to.getIsBlocked())
                 {
                     System.out.println("Операция заблокирована");
+                    Thread.currentThread().interrupt();
                     return;
                 }
                 if (amount > 50000)
