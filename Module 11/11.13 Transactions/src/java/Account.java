@@ -2,8 +2,14 @@ public class Account
 {
     private long money;
     private Integer accNumber;
-    private boolean isBlocked = false;
-    private boolean isPossible = true;
+
+
+    private volatile boolean isBlocked = false;
+
+    public Account()
+    {
+
+    }
 
     public Account(long money, Integer accNumber)
     {
@@ -26,10 +32,12 @@ public class Account
             return true;
         }
     }
+
     public long getMoney()
     {
         return money;
     }
+
     public Integer getAccNumber()
     {
         return accNumber;

@@ -11,8 +11,8 @@ public class Bank
         throws InterruptedException
     {
         //Thread.sleep(1000);
-        return random.nextBoolean();
-        //return true;
+        //return random.nextBoolean();
+        return true;
     }
 
     /**
@@ -26,49 +26,29 @@ public class Bank
     {
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
-        if (from.getIsBlocked() || to.getIsBlocked())
-        {
-            System.out.println("Операция заблокирована");
-            return;
-        }
-        if (amount > 50000)
-        {
-            if (isFraud(from.getAccNumber(), to.getAccNumber(), amount))
-            {
-                from.setIsBlocked(true);
-                to.setIsBlocked(true);
-                //System.out.println("Операция заблокирована");
-                //return;
-            }
-        }
-        if (from.getAccNumber() < to.getAccNumber())
-        {
-            synchronized (from)
-            {
-                synchronized (to)
-                {
-                    if (from.withdraw(amount))
-                    {
-                        to.deposit(amount);
-                    }
-                }
-            }
-        }
-        else
+
+        synchronized (from)
         {
             synchronized (to)
             {
-                synchronized (from)
+                if (from.getIsBlocked() || to.getIsBlocked())
                 {
-                    if (from.withdraw(amount))
-                    {
-                        to.deposit(amount);
-                    }
-
+                    System.out.println("Операция заблокирована");
+                    return;
                 }
+                if (amount > 50000)
+                {
+                    if (isFraud(from.getAccNumber(), to.getAccNumber(), amount))
+                    {
+                        from.setIsBlocked(true);
+                        to.setIsBlocked(true);
+                        //System.out.println("Операция заблокирована");
+                        //return;
+                    }
+                }
+                accountSynchronization(from, to, amount);
             }
         }
-
     }
 
     /**
@@ -112,4 +92,34 @@ public class Bank
         this.accounts = accounts;
     }
 
+    private void accountSynchronization(Account from, Account to, long amount)
+    {
+        if (from.getAccNumber() < to.getAccNumber())
+        {
+            synchronized (from)
+            {
+                synchronized (to)
+                {
+                    if (from.withdraw(amount))
+                    {
+                        to.deposit(amount);
+                    }
+                }
+            }
+        }
+        else
+        {
+            synchronized (to)
+            {
+                synchronized (from)
+                {
+                    if (from.withdraw(amount))
+                    {
+                        to.deposit(amount);
+                    }
+
+                }
+            }
+        }
+    }
 }

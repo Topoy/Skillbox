@@ -112,20 +112,29 @@ public class TransactionsTest extends TestCase
     @Test
     public void testIsFraudMethod() throws InterruptedException
     {
-        ExecutorService service = Executors.newCachedThreadPool();
-        for (int i = 0; i < 100; i++)
+        ExecutorService service = Executors.newFixedThreadPool(8);
+        long balanceStart = reachBank.getBalance(1);
+
+        for (int i = 0; i < 10; i++)
         {
             service.submit(new Runnable() {
                 @Override
                 public void run() {
                     try
                     {
+                        System.err.println(Thread.currentThread().getId() + " start");
+                        int toRandom = random.nextInt(10);
+                        reachBank.transfer(1, toRandom, 100000);
+                        System.err.println(Thread.currentThread().getId() + " end: " + reachAccountList.get(0).getMoney());
+
+                        /*
                         for (int i = 0; i < 10; i++)
                         {
                             int toRandom = random.nextInt(10);
                             reachBank.transfer(1, toRandom, 100000);
                             System.out.println(reachAccountList.get(0).getMoney());
                         }
+                        */
                     }
                     catch (InterruptedException ex)
                     {
@@ -136,9 +145,13 @@ public class TransactionsTest extends TestCase
         }
         service.shutdown();
         service.awaitTermination(1, TimeUnit.HOURS);
+        /*
         boolean expectedState = true;
         boolean actualState = reachAccountList.get(0).getIsBlocked();
         assertEquals(expectedState, actualState);
+        */
+        long balanceEnd = reachBank.getBalance(1);
+        assertEquals(balanceStart - 100000, balanceEnd);
     }
 
 
