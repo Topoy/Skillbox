@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class Bank
 {
@@ -27,27 +29,34 @@ public class Bank
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
 
-        synchronized (from)
+        if (from.getAccNumber() < to.getAccNumber())
+        {
+            synchronized (from)
+            {
+                synchronized (to)
+                {
+                    if (isBlockedCondition(from, to))
+                    {
+                        return;
+                    }
+                    isFraudCondition(from, to, amount);
+                    doTransfer(from, to, amount);
+                }
+            }
+        }
+        else
         {
             synchronized (to)
             {
-                if (from.getIsBlocked() || to.getIsBlocked())
+                synchronized (from)
                 {
-                    System.out.println("Операция заблокирована");
-                    Thread.currentThread().interrupt();
-                    return;
-                }
-                if (amount > 50000)
-                {
-                    if (isFraud(from.getAccNumber(), to.getAccNumber(), amount))
+                    if (isBlockedCondition(from, to))
                     {
-                        from.setIsBlocked(true);
-                        to.setIsBlocked(true);
-                        //System.out.println("Операция заблокирована");
-                        //return;
+                        return;
                     }
+                    isFraudCondition(from, to, amount);
+                    doTransfer(from, to, amount);
                 }
-                accountSynchronization(from, to, amount);
             }
         }
     }
@@ -93,18 +102,49 @@ public class Bank
         this.accounts = accounts;
     }
 
-    private void accountSynchronization(Account from, Account to, long amount)
+    private boolean isBlockedCondition(Account from, Account to)
     {
+        if (from.getIsBlocked() || to.getIsBlocked())
+        {
+            System.out.println("Операция заблокирована");
+            return true;
+        }
+        return false;
+    }
+    
+    private void isFraudCondition(Account from, Account to, long amount) throws InterruptedException
+    {
+        if (amount > 50000)
+        {
+            if (isFraud(from.getAccNumber(), to.getAccNumber(), amount))
+            {
+                from.setIsBlocked(true);
+                to.setIsBlocked(true);
+            }
+        }
+    }
+
+    private void doTransfer(Account from, Account to, long amount)
+    {
+        if (from.withdraw(amount))
+        {
+            to.deposit(amount);
+        }
+    }
+
+    /*
+    Идея состояла в том, чтобы сократить код за счёт повторяющегося обрамления проверок последовательности выполнения
+    потоков
+    private void dislockMethod(Account from, Account to, long amount, boolean method)
+    {
+        boolean b = false;
         if (from.getAccNumber() < to.getAccNumber())
         {
             synchronized (from)
             {
                 synchronized (to)
                 {
-                    if (from.withdraw(amount))
-                    {
-                        to.deposit(amount);
-                    }
+                    b = method;
                 }
             }
         }
@@ -114,13 +154,12 @@ public class Bank
             {
                 synchronized (from)
                 {
-                    if (from.withdraw(amount))
-                    {
-                        to.deposit(amount);
-                    }
-
+                    b = method;
                 }
             }
         }
+
     }
+    */
+
 }

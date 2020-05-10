@@ -122,13 +122,10 @@ public class TransactionsTest extends TestCase
                 public void run() {
                     try
                     {
-                        if (!Thread.currentThread().isInterrupted())
-                        {
-                            System.err.println(Thread.currentThread().getId() + " start");
-                            int toRandom = random.nextInt(10);
-                            reachBank.transfer(1, toRandom, 100000);
-                            System.err.println(Thread.currentThread().getId() + " end: " + reachAccountList.get(0).getMoney());
-                        }
+                        System.err.println(Thread.currentThread().getId() + " start");
+                        int toRandom = random.nextInt(10);
+                        reachBank.transfer(1, toRandom, 100000);
+                        System.err.println(Thread.currentThread().getId() + " end: " + reachAccountList.get(0).getMoney());
                         /*
                         for (int i = 0; i < 10; i++)
                         {
