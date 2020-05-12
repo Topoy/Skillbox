@@ -4,6 +4,7 @@ public class Main
 {
     public static void main(String[] args) throws InterruptedException
     {
+        /*
         Bank sberbank = new Bank();
         ArrayList<Account> accounts = new ArrayList<>();
         ArrayList<Account> accounts1 = new ArrayList<>();
@@ -26,5 +27,6 @@ public class Main
             accounts1.add(sberbank.getAccounts().get(i));
         }
         accounts1.forEach(a -> System.out.println("Номер счета: " + a.getAccNumber() + "; Баланс " + a.getMoney()));
+        */
     }
 }

@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
 
 public class Bank
 {
@@ -12,9 +11,9 @@ public class Bank
     private synchronized boolean isFraud(int fromAccountNum, int toAccountNum, long amount)
         throws InterruptedException
     {
-        //Thread.sleep(1000);
-        //return random.nextBoolean();
-        return true;
+        Thread.sleep(1000);
+        return random.nextBoolean();
+        //return true;
     }
 
     /**
@@ -31,33 +30,11 @@ public class Bank
 
         if (from.getAccNumber() < to.getAccNumber())
         {
-            synchronized (from)
-            {
-                synchronized (to)
-                {
-                    if (isBlockedCondition(from, to))
-                    {
-                        return;
-                    }
-                    isFraudCondition(from, to, amount);
-                    doTransfer(from, to, amount);
-                }
-            }
+            synchronizedTransfer(from, to, from, to, amount);
         }
         else
         {
-            synchronized (to)
-            {
-                synchronized (from)
-                {
-                    if (isBlockedCondition(from, to))
-                    {
-                        return;
-                    }
-                    isFraudCondition(from, to, amount);
-                    doTransfer(from, to, amount);
-                }
-            }
+            synchronizedTransfer(to, from, from, to, amount);
         }
     }
 
@@ -67,15 +44,18 @@ public class Bank
     public long getBalance(int accountNum)
     {
         Account account = accounts.get(accountNum);
-        return account.getMoney();
+        synchronized (account)
+        {
+            return account.getMoney();
+        }
     }
 
-    public HashMap<Integer, Account> getAccounts()
+    public Map<Integer, Account> getAccounts()
     {
         return accounts;
     }
 
-    private static HashMap<Integer, Account> createAccounts()
+    private static Map<Integer, Account> createAccounts()
     {
         HashMap<Integer, Account> accountMap = new HashMap<>();
         for (int i = 0; i < 100; i++)
@@ -111,7 +91,7 @@ public class Bank
         }
         return false;
     }
-    
+
     private void isFraudCondition(Account from, Account to, long amount) throws InterruptedException
     {
         if (amount > 50000)
@@ -124,11 +104,34 @@ public class Bank
         }
     }
 
-    private void doTransfer(Account from, Account to, long amount)
+    private void doTransfer(Account from, Account to, long amount) throws InterruptedException
     {
+        if (isBlockedCondition(from, to))
+        {
+            return;
+        }
+        isFraudCondition(from, to, amount);
         if (from.withdraw(amount))
         {
             to.deposit(amount);
+        }
+    }
+
+    private void synchronizedTransfer(Account firstMonitor, Account secondMonitor, Account from, Account to, long amount)
+    {
+        try
+        {
+            synchronized (firstMonitor)
+            {
+                synchronized (secondMonitor)
+                {
+                    doTransfer(from, to, amount);
+                }
+            }
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
         }
     }
 
