@@ -17,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/../11.13 Transactions/target/classes/Bank.class" beforeDir="false" afterPath="$PROJECT_DIR$/../11.13 Transactions/target/classes/Bank.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyReentrantLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyReentrantLock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 8/2/spbMetroTests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 8/2/spbMetroTests/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Module 9/1. File size properties/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module 9/1. File size properties/.idea/workspace.xml" afterDir="false" />
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MyReentrantLock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="238">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -155,7 +154,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589722215253" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589723878708" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -249,8 +248,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MyReentrantLock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="238">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
         </state>
       </provider>
     </entry>

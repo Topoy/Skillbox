@@ -16,7 +16,7 @@ public class MyReentrantLock
     locked = false и будит все уснувшие потоки через notifyAll() -> Следующий поток повторит цикл, пока другие потоки будут спать,
     ожидая пробуждения.
      */
-    
+
     private static volatile boolean locked = false;
 
     public void lock()
@@ -38,6 +38,6 @@ public class MyReentrantLock
     public synchronized void unlock()
     {
         locked = false;
-        notifyAll();
+        notify();
     }
 }
