@@ -1,19 +1,23 @@
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Main
 {
     private static int count = 10;
     private static MyReentrantLock reentrantLock = new MyReentrantLock();
-    private static ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) throws InterruptedException
     {
+
         Thread t1 = new Thread(() ->
         {
             for (int i = 0; i < 10000; i++)
             {
-                reentrantLock.lock();
+                try {
+                    reentrantLock.lock();
+                    reentrantLock.lock();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 count++;
+                reentrantLock.unlock();
                 reentrantLock.unlock();
             }
         });
@@ -22,8 +26,14 @@ public class Main
         {
            for (int i = 0; i < 10000; i++)
            {
-               reentrantLock.lock();
+               try {
+                   reentrantLock.lock();
+                   reentrantLock.lock();
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
                count--;
+               reentrantLock.unlock();
                reentrantLock.unlock();
            }
         });

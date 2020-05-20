@@ -1,3 +1,5 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MyReentrantLock
 {
     /*
@@ -17,27 +19,35 @@ public class MyReentrantLock
     ожидая пробуждения.
      */
 
-    private static volatile boolean locked = false;
+    private static boolean locked = false;
+    private static int lockCount = 0;
+    private static Thread lordThread;
 
-    public void lock()
+    public synchronized void lock() throws InterruptedException
     {
-        synchronized (this)
+        while (locked && lockCount > 0)
         {
-            while (locked)
+            if (lordThread.equals(Thread.currentThread()))
             {
-                try {
-                    this.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                break;
             }
-            locked = true;
+            wait();
         }
+        if (lockCount == 0)
+        {
+            lordThread = Thread.currentThread();
+        }
+        locked = true;
+        lockCount++;
     }
 
     public synchronized void unlock()
     {
-        locked = false;
-        notify();
+        lockCount--;
+        if (lockCount == 0)
+        {
+            locked = false;
+            notify();
+        }
     }
 }
