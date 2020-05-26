@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54703f55-7879-453a-9c09-1bedc960d035" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/11.21 Simple Site Map.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/WebCrawler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/tasks/Task03TruckTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bonus tasks/streams-assignments-with-solutions/src/main/java/tasks/Task03TruckTypes.java" afterDir="false" />
@@ -24,6 +15,21 @@
       <change beforePath="$PROJECT_DIR$/../11.13 Transactions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.13 Transactions/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.13 Transactions/src/java/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11.13 Transactions/src/java/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.13 Transactions/target/classes/Bank.class" beforeDir="false" afterPath="$PROJECT_DIR$/../11.13 Transactions/target/classes/Bank.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WebCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WebCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/libraries/Maven__org_jsoup_jsoup_1_11_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/11.22 Simple site map.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/src/SiteMapMaker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11.22 Simple site map/src/main/java/SiteMapMaker.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4 ImageResizer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../11.4_ImageResizerTeacher/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My Reentrant Lock/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../My Reentrant Lock/.idea/workspace.xml" afterDir="false" />
@@ -57,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="187">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -66,10 +72,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/WebCrawler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="306">
+              <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#642#643#0" expanded="true" />
+                <element signature="e#672#673#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,15 +100,15 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/SiteMapCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/WebCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/WebCrawler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="728" />
+    <option name="y" value="23" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -142,7 +150,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590235103181" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590519350979" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../OtherUserProjects/SkillboxJava-master/module11/11.21" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -216,13 +225,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SiteMapCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -235,19 +237,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="187">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/WebCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="306">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
           </folding>
         </state>
       </provider>
