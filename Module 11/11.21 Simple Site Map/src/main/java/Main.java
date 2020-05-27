@@ -6,8 +6,8 @@ public class Main
     {
         String mainLink = "https://secure-headland-59304.herokuapp.com/";
         String someLink = "https://secure-headland-59304.herokuapp.com/child-C";
-        WebCrawler webCrawler = new WebCrawler(mainLink);
-        //webCrawler.parseOnePage();
+        WebCrawler webCrawler = new WebCrawler(mainLink, 0);
+        //System.out.println(webCrawler.parseOnePage());
         String result = new ForkJoinPool().invoke(webCrawler);
         System.out.println(result);
 

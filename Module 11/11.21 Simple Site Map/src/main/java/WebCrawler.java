@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.RecursiveTask;
 
 public class WebCrawler extends RecursiveTask<String>
@@ -15,36 +16,34 @@ public class WebCrawler extends RecursiveTask<String>
     private static final int MAX_DEPTH = 5;
     private LinkedList<String> links = new LinkedList<>();
     private final static Set<String> processedLinks = new HashSet<>();
-    private String tab = "";
+    private final static Set<String> linksSeen = ConcurrentHashMap.newKeySet();
+    private static String tab = "";
 
     private String URL;
-    private int depth;
+    private int depth = 0;
 
-    public WebCrawler(String URL)
+    public WebCrawler(String URL, int depth)
     {
         this.URL = URL;
+        this.depth = depth;
     }
 
     @Override
     protected String compute()
     {
-        StringBuilder totalURLs = new StringBuilder(URL + "\n");
+        tab = "\t".repeat(depth);
+        StringBuilder totalURLs = new StringBuilder(tab + URL + "\n");
         Set<WebCrawler> subTasks = new LinkedHashSet<>();
-
         for (String pageLink : parseOnePage())
         {
-            synchronized (pageLink)
-            {
-                if (!processedLinks.contains(pageLink))
+            if (linksSeen.add(pageLink)) //возвращает true, если этот Set ещё не содержит такой элемент (pageLink)
                 {
-                    WebCrawler task = new WebCrawler(pageLink);
-                    processedLinks.add(pageLink);
+                    WebCrawler task = new WebCrawler(pageLink, depth);
                     task.fork();
                     subTasks.add(task);
                 }
-            }
-        }
 
+        }
         for (WebCrawler task : subTasks)
         {
                 totalURLs.append(task.join());
@@ -59,8 +58,8 @@ public class WebCrawler extends RecursiveTask<String>
             try
             {
                 Document document = Jsoup.connect(URL).maxBodySize(0).get();
-                Elements pageLinks = document.select("ul a[href]");
-
+                Elements pageLinks = document.select("a[href]");
+                depth++;
                 for (Element link : pageLinks)
                 {
                     URL = link.attr("abs:href");
@@ -74,15 +73,12 @@ public class WebCrawler extends RecursiveTask<String>
         }
         return links;
     }
-
+/*
     public LinkedList<String> getPageLinks(int depth)
     {
         if (!links.contains(URL) && (depth < MAX_DEPTH))
         {
-            for (int i = 0; i < depth; i++)
-            {
-                tab += "\t";
-            }
+            tab = "\t".repeat(depth);
             System.out.println("Depth: " + depth + " ; " + tab + URL + ";");
             tab = "";
 
@@ -107,4 +103,5 @@ public class WebCrawler extends RecursiveTask<String>
         }
         return links;
     }
+    */
 }
