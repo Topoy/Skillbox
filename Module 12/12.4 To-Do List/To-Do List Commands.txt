@@ -1,0 +1,15 @@
+Сущности:
+Все дела
+Конкретное дело
+Дата/срок выполнения
+
+URL                             
+Method                              GET
+Description        
+
+  URL                          Method                          Description
+/tasks/                         GET                         Получение всех задач
+/tasks/id                       GET                       Получение конкретной задачи
+/tasks/                        POST                       Добавление нового дела
+/tasks/id                       PUT                       Сохранение изменений книги целиком
+/books/id                      DELETE                         Удаление книги
