@@ -1,13 +1,12 @@
 package response;
 
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task
 {
     private String name;
-    private int id;
+    private AtomicInteger id;
     private Calendar deadline;
 
     public String getName() {
@@ -18,11 +17,11 @@ public class Task
         this.name = name;
     }
 
-    public int getId() {
+    public AtomicInteger getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public synchronized void setId(AtomicInteger id) {
         this.id = id;
     }
 

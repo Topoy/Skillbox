@@ -2,26 +2,28 @@ package main;
 
 import response.Task;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TaskStorage
 {
-    private static ArrayList<Task> taskList = new ArrayList<Task>();
+    private static List<Task> taskList = Collections.synchronizedList(new ArrayList<>());
+    private static volatile int listSize = taskList.size();
 
-    public static int addTask(Task task, String name)
+    public static AtomicInteger addTask(Task task, String name)
     {
-        int id = taskList.size() + 1;
+        AtomicInteger atomicId = new AtomicInteger(listSize);
+        atomicId.incrementAndGet();
         Calendar deadline = Calendar.getInstance();
         deadline.add(Calendar.DAY_OF_MONTH, 1);
         taskList.add(task);
-        task.setId(id);
+        task.setId(atomicId);
         task.setName(name);
         task.setDeadline(deadline);
-        return id;
+        return atomicId;
     }
 
     public static List<Task> getTasks()

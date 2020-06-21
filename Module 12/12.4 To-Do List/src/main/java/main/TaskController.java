@@ -8,18 +8,19 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 public class TaskController
 {
-    @RequestMapping(value = "/tasks/", method = RequestMethod.GET)
+    @GetMapping(value = "/tasks/")
     public List<Task> getTasks()
     {
         return TaskStorage.getTasks();
     }
 
-    @RequestMapping(value = "/tasks/", method = RequestMethod.POST)
-    public int addTask(Task task, String name)
+    @PostMapping(value = "/tasks/")
+    public AtomicInteger addTask(Task task, String name)
     {
         return TaskStorage.addTask(task, name);
     }
@@ -38,10 +39,18 @@ public class TaskController
        task.setDeadline(deadline);
     }
 
-    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/tasks/{id}")
     public void removeTask(@PathVariable("id") Integer id)
     {
-        getTasks().remove(id - 1);
+        try
+        {
+            getTasks().remove(id - 1);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            System.out.println("Вы пытаетесь удалить несуществующий элемент");
+        }
+
     }
 
 }
