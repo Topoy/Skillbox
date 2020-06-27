@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Task
 {
     private String name;
-    private AtomicInteger id;
+    private int id;
     private Calendar deadline;
 
     public String getName() {
@@ -17,11 +17,11 @@ public class Task
         this.name = name;
     }
 
-    public AtomicInteger getId() {
+    public int getId() {
         return id;
     }
 
-    public synchronized void setId(AtomicInteger id) {
+    public synchronized void setId(int id) {
         this.id = id;
     }
 
