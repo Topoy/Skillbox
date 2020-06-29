@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import response.Task;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
@@ -20,7 +18,7 @@ public class TaskController
     }
 
     @PostMapping(value = "/tasks/")
-    public AtomicInteger addTask(Task task, String name)
+    public int addTask(Task task, String name)
     {
         return TaskStorage.addTask(task, name);
     }
@@ -42,15 +40,16 @@ public class TaskController
     @DeleteMapping(value = "/tasks/{id}")
     public void removeTask(@PathVariable("id") Integer id)
     {
-        try
+        //getTasks().remove(id - 1);
+        List<Task> taskList = Collections.synchronizedList(new ArrayList<>());
+        taskList.addAll(getTasks());
+        for (Task task : taskList)
         {
-            getTasks().remove(id - 1);
+            if (task.getId() == id)
+            {
+                getTasks().remove(task);
+            }
         }
-        catch (IndexOutOfBoundsException e)
-        {
-            System.out.println("Вы пытаетесь удалить несуществующий элемент");
-        }
-
     }
 
 }

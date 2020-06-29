@@ -13,7 +13,7 @@ public class TaskStorage
     private static List<Task> taskList = Collections.synchronizedList(new ArrayList<>());
     private static AtomicInteger atomicId = new AtomicInteger(0);
 
-    public static AtomicInteger addTask(Task task, String name)
+    public static int addTask(Task task, String name)
     {
         int id = atomicId.incrementAndGet();
         Calendar deadline = Calendar.getInstance();
@@ -22,7 +22,7 @@ public class TaskStorage
         task.setId(id);
         task.setName(name);
         task.setDeadline(deadline);
-        return atomicId;
+        return id;
     }
 
     public static List<Task> getTasks()
