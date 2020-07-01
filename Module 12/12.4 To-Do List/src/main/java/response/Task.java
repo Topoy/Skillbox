@@ -1,7 +1,6 @@
 package response;
 
 import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task
 {
