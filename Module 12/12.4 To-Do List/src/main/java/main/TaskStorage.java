@@ -34,5 +34,21 @@ public class TaskStorage
         return taskMap;
     }
 
+    public static Task getTask(Integer id)
+    {
+        return taskMap.get(id);
+    }
+
+    public static void removeTask(Integer id)
+    {
+        for (Map.Entry<Integer, Task> task : taskMap.entrySet())
+        {
+            if (task.getKey().equals(id))
+            {
+                taskMap.remove(task.getKey());
+            }
+        }
+    }
+
 
 }

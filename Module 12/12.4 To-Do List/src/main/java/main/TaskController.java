@@ -24,7 +24,7 @@ public class TaskController
     @GetMapping("/tasks/{id}")
     public Task getTask(@PathVariable("id") Integer id)
     {
-        return TaskStorage.getTaskMap().get(id);
+        return TaskStorage.getTask(id);
     }
 
     @PostMapping(value = "/tasks/{id}/")
@@ -38,13 +38,7 @@ public class TaskController
     @DeleteMapping(value = "/tasks/{id}")
     public void removeTask(@PathVariable("id") Integer id)
     {
-        for (Map.Entry<Integer, Task> task : getTasks().entrySet())
-        {
-            if (task.getKey().equals(id))
-            {
-                getTasks().remove(task.getKey());
-            }
-        }
+        TaskStorage.removeTask(id);
     }
 
 
