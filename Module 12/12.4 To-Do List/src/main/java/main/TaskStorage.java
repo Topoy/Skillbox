@@ -1,7 +1,7 @@
 package main;
 
 import org.springframework.web.bind.annotation.RequestBody;
-import response.Task;
+import main.model.Task;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
