@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -24,10 +25,10 @@ public class TaskService
     private TaskRepository taskRepository;
 
 
-    public int addTask(@RequestBody Task task)
+    public void addTask(@RequestBody Task task)
     {
         Task newTask = taskRepository.save(task);
-        return newTask.getId();
+        //return newTask.getId();
     }
 
     public ResponseEntity<Task> getTask(@PathVariable ("id") Integer id)
@@ -46,8 +47,8 @@ public class TaskService
         return taskIterable;
     }
 
-    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                       Calendar deadline, @PathVariable("id") Integer id)
+    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(pattern = "yyyy-MM-dd")
+                                Date deadline, @PathVariable("id") Integer id)
     {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (!optionalTask.isPresent())

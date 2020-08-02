@@ -1,23 +1,34 @@
 package main;
 
+import main.model.Task;
+import main.model.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-@RestController
+
+@Controller
 public class DefaultController
 {
-    @RequestMapping("/tasks/")
-    public String toDoList()
-    {
-        return "Дата просмотра страницы: " + new Date();
-    }
-    //@RequestMapping(value = "/tasks/", method = RequestMethod.GET)
-    public static String getDate()
-    {
-        return "Дата: " + new Date();
-    }
+    @Autowired
+    private TaskRepository taskRepository;
 
+    @RequestMapping("/")
+    public String index(Model model)
+   {
+       Iterable<Task> taskIterator = taskRepository.findAll();
+       List<Task> tasks = new ArrayList<>();
+       for (Task task : taskIterator)
+       {
+           tasks.add(task);
+       }
+       model.addAttribute("tasksAmount", tasks.size());
+       model.addAttribute("writeSomething", 1);
+       return "indexWithoutJS";
+   }
 }

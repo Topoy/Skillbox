@@ -16,8 +16,9 @@ public class TaskStorage
     public static int addTask(@RequestBody Task task)
     {
         int id = atomicId.incrementAndGet();
-        Calendar deadline = Calendar.getInstance();
-        deadline.add(Calendar.DAY_OF_MONTH, 1);
+        Date deadline = new Date();
+        //deadline.add(Calendar.DAY_OF_MONTH, 1);
+
         taskMap.put(id, task);
         task.setId(id);
         task.setDeadline(deadline);
