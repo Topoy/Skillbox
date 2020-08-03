@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -41,14 +40,19 @@ public class TaskService
         return new ResponseEntity(optionalTask.get(), HttpStatus.OK);
     }
 
+    public Task getTaskById(@PathVariable("id") Integer id)
+    {
+        return taskRepository.findById(id).orElse(null);
+    }
+
     public Iterable<Task> getTasks()
     {
         Iterable<Task> taskIterable = taskRepository.findAll();
         return taskIterable;
     }
 
-    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(pattern = "yyyy-MM-dd")
-                                Date deadline, @PathVariable("id") Integer id)
+    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                LocalDateTime deadline, @PathVariable("id") Integer id)
     {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (!optionalTask.isPresent())

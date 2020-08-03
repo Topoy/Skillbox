@@ -20,13 +20,13 @@
             </thead>
             <tbody>
             <tr th:each="tasks : ${task}">
-                <td th:text="tasks.id"/>
-                <td th:text="tasks.name"/>
-                <td th:text="tasks.deadline"/>
+                <td th:text="${tasks.id}"/>
+                <td th:text="${tasks.name}"/>
+                <td th:text="${tasks.deadline}"/>
                 <td>
                     <a th:href="@{'/show/' + ${tasks.id}}" th:text="Показать"/>
                     <a th:href="@{'/delete/' + ${tasks.id}}" th:text="Удалить"/>
-                    <a th:href="@{'/deadline/' + ${tasks.id}}" th:text="Установить дедлайн"/>
+                    <a th:href="@{'/edit/' + ${tasks.id}}" th:text="Редактировать"/>
                 </td>
             </tr>
             </tbody>
@@ -35,5 +35,5 @@
             <a th:href="@{/add}">Добавить дело></a>
         <br/>
     </div>
-</body>w
+</body>
 </html>

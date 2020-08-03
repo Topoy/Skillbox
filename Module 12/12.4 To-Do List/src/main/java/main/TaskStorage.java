@@ -3,6 +3,7 @@ package main;
 import org.springframework.web.bind.annotation.RequestBody;
 import main.model.Task;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,7 +17,7 @@ public class TaskStorage
     public static int addTask(@RequestBody Task task)
     {
         int id = atomicId.incrementAndGet();
-        Date deadline = new Date();
+        LocalDateTime deadline = LocalDateTime.now();
         //deadline.add(Calendar.DAY_OF_MONTH, 1);
 
         taskMap.put(id, task);

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,7 +27,6 @@ public class DefaultController
            tasks.add(task);
        }
        model.addAttribute("tasksAmount", tasks.size());
-       model.addAttribute("writeSomething", 1);
        return "indexWithoutJS";
    }
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import main.model.Task;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -17,18 +18,23 @@ public class TaskController
     @Autowired
     private TaskService taskService;
 
-    @GetMapping(value = "/tasks/")
-    public Iterable<Task> getTasks(Model model)
+    @GetMapping(value = "/")
+    public String getTasks(Model model)
     {
-        Iterable<Task> tasks = taskService.getTasks();
+        ArrayList<Task> tasks = new ArrayList<>();
+        Iterable<Task> taskIterable = taskService.getTasks();
+        for (Task task : taskIterable)
+        {
+            tasks.add(task);
+        }
         model.addAttribute("task", tasks);
-        return tasks;
+        return "indexWithoutJS";
     }
 
     @PostMapping("/edit")
     public String addTask(@ModelAttribute(value = "task") Task task)
     {
-        //taskService.addTask(task);
+        taskService.addTask(task);
         return "redirect:/";
     }
 
@@ -40,18 +46,36 @@ public class TaskController
         return "edit";
     }
 
-    @GetMapping("/tasks/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable("id") Integer id)
+    @GetMapping("/show/{id}")
+    public String getTask(Model model, @PathVariable("id") Integer id)
     {
-        return taskService.getTask(id);
+        Task task = taskService.getTaskById(id);
+        model.addAttribute("task", task);
+        return "task-page";
     }
 
     @PostMapping(value = "/tasks/{id}/")
-    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") Date deadline,
+    public void setDate(@RequestParam(name = "deadline") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime deadline,
                      @PathVariable("id") Integer id)
     {
         taskService.setDate(deadline, id);
     }
+
+    @GetMapping(value = "/edit/{id}")
+    public String editTask(Model model, @PathVariable("id") Integer id)
+    {
+        Task task = taskService.getTaskById(id);
+        model.addAttribute("task", task);
+        return "edit";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String deleteTask(Model model, @PathVariable("id") Integer id)
+    {
+        taskService.removeTask(id);
+        return "redirect:/";
+    }
+
 
     @DeleteMapping(value = "/tasks/{id}")
     public void removeTask(@PathVariable("id") Integer id)

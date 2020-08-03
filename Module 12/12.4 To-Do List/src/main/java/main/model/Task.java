@@ -1,10 +1,9 @@
 package main.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "task")
@@ -18,11 +17,9 @@ public class Task
     @Column(name = "id")
     private int id;
 
-    //private String stringDeadline;
     @Column(name = "deadline")
-    private String deadline;
-
-    //private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime deadline;
 
     public String getName() {
         return name;
@@ -40,26 +37,13 @@ public class Task
         this.id = id;
     }
 
-    public Date getDeadline() throws Exception {
-        try
-        {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(deadline);
-        }
-        catch (NullPointerException e)
-        {
-            e.printStackTrace();
-        }
-        return new Date();
+    public LocalDateTime getDeadline()
+    {
+        return deadline;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = new SimpleDateFormat("yyyy-MM-dd").format(deadline);
-      /*  SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            this.deadline = format.parse(stringDeadline);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
+    public void setDeadline(LocalDateTime deadline) {
+       this.deadline = deadline;
     }
 
 }
